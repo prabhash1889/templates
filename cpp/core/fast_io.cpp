@@ -1,11 +1,14 @@
 #include <bits/stdc++.h>
 using namespace std;
-struct FastScanner {
+struct FastScanner
+{
   static const int S = 1 << 20;
   int i = 0, n = 0;
   char b[S];
-  char gc() {
-    if (i >= n) {
+  char gc()
+  {
+    if (i >= n)
+    {
       n = fread(b, 1, S, stdin);
       i = 0;
       if (!n)
@@ -13,12 +16,15 @@ struct FastScanner {
     }
     return b[i++];
   }
-  template <class T> bool read(T &x) {
+  template <class T>
+  bool read(T &x)
+  {
     char c = gc();
     T s = 1, v = 0;
     if (!c)
       return false;
-    while (c != ' - ' && (c < '0' || c > '9')) {
+    while (c != ' - ' && (c < '0' || c > '9'))
+    {
       c = gc();
       if (!c)
         return false;
@@ -30,11 +36,13 @@ struct FastScanner {
     x = v * s;
     return true;
   }
-  bool read(string &s) {
+  bool read(string &s)
+  {
     char c = gc();
     if (!c)
       return false;
-    while (isspace((unsigned char)c)) {
+    while (isspace((unsigned char)c))
+    {
       c = gc();
       if (!c)
         return false;
@@ -44,30 +52,39 @@ struct FastScanner {
       s += c, c = gc();
     return true;
   }
-  template <class T> T next() {
+  template <class T>
+  T next()
+  {
     T x;
     read(x);
     return x;
   }
 };
-struct FastOutput {
+struct FastOutput
+{
   static const int S = 1 << 20;
   int i = 0;
   char b[S];
-  ~FastOutput() {
+  ~FastOutput()
+  {
     flush();
   }
-  void pc(char c) {
+  void pc(char c)
+  {
     if (i == S)
       flush();
     b[i++] = c;
   }
-  void flush() {
+  void flush()
+  {
     if (i)
       fwrite(b, 1, i, stdout), i = 0;
   }
-  template <class T> void write(T x) {
-    if (x == 0) {
+  template <class T>
+  void write(T x)
+  {
+    if (x == 0)
+    {
       pc('0');
       return;
     }
@@ -80,11 +97,14 @@ struct FastOutput {
     while (n--)
       pc(s[n]);
   }
-  void write(const string &s) {
+  void write(const string &s)
+  {
     for (char c : s)
       pc(c);
   }
-  template <class T> void writeln(const T &x) {
+  template <class T>
+  void writeln(const T &x)
+  {
     write(x);
     pc('\n');
   }

@@ -1,18 +1,22 @@
 #include <bits/stdc++.h>
 using namespace std;
-struct SAM {
-  struct S {
+struct SAM
+{
+  struct S
+  {
     int link = -1, len = 0;
     map<char, int> nxt;
     long long occ = 0;
   };
   vector<S> st;
   int last = 0;
-  SAM(int n = 0) {
+  SAM(int n = 0)
+  {
     st.reserve(2 * n);
     st.push_back(S());
   }
-  void extend(char c) {
+  void extend(char c)
+  {
     int cur = st.size();
     st.push_back(S());
     st[cur].len = st[last].len + 1;
@@ -22,11 +26,13 @@ struct SAM {
       st[p].nxt[c] = cur, p = st[p].link;
     if (p == -1)
       st[cur].link = 0;
-    else {
+    else
+    {
       int q = st[p].nxt[c];
       if (st[p].len + 1 == st[q].len)
         st[cur].link = q;
-      else {
+      else
+      {
         int cl = st.size();
         st.push_back(st[q]);
         st[cl].len = st[p].len + 1;
@@ -38,11 +44,13 @@ struct SAM {
     }
     last = cur;
   }
-  void build(const string &s) {
+  void build(const string &s)
+  {
     for (char c : s)
       extend(c);
   }
-  long long distinct() {
+  long long distinct()
+  {
     long long ans = 0;
     for (int i = 1; i < (int)st.size(); i++)
       ans += st[i].len - st[st[i].link].len;

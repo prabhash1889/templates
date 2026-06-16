@@ -1,21 +1,26 @@
 #include <bits/stdc++.h>
 using namespace std;
-struct DSU {
+struct DSU
+{
   vector<int> p, sz;
   int comps;
-  DSU(int n = 0) {
+  DSU(int n = 0)
+  {
     init(n);
   }
-  void init(int n) {
+  void init(int n)
+  {
     p.resize(n);
     iota(p.begin(), p.end(), 0);
     sz.assign(n, 1);
     comps = n;
   }
-  int find(int x) {
+  int find(int x)
+  {
     return p[x] == x ? x : p[x] = find(p[x]);
   }
-  bool unite(int a, int b) {
+  bool unite(int a, int b)
+  {
     a = find(a);
     b = find(b);
     if (a == b)
@@ -27,36 +32,44 @@ struct DSU {
     --comps;
     return 1;
   }
-  int size(int x) {
+  int size(int x)
+  {
     return sz[find(x)];
   }
 };
-struct RollbackDSU {
+struct RollbackDSU
+{
   vector<int> p, sz;
   vector<pair<int, int>> hist;
   int comps;
-  RollbackDSU(int n = 0) {
+  RollbackDSU(int n = 0)
+  {
     init(n);
   }
-  void init(int n) {
+  void init(int n)
+  {
     p.resize(n);
     iota(p.begin(), p.end(), 0);
     sz.assign(n, 1);
     hist.clear();
     comps = n;
   }
-  int find(int x) const {
+  int find(int x) const
+  {
     while (p[x] != x)
       x = p[x];
     return x;
   }
-  int snapshot() const {
+  int snapshot() const
+  {
     return hist.size();
   }
-  bool unite(int a, int b) {
+  bool unite(int a, int b)
+  {
     a = find(a);
     b = find(b);
-    if (a == b) {
+    if (a == b)
+    {
       hist.push_back({-1, -1});
       return 0;
     }
@@ -68,8 +81,10 @@ struct RollbackDSU {
     --comps;
     return 1;
   }
-  void rollback(int snap) {
-    while ((int)hist.size() > snap) {
+  void rollback(int snap)
+  {
+    while ((int)hist.size() > snap)
+    {
       auto [b, a] = hist.back();
       hist.pop_back();
       if (b == -1)

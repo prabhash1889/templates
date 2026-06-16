@@ -3,7 +3,8 @@ using namespace std;
 using ll = long long;
 const ll DCDP_INF = (1LL << 62);
 template <class Cost>
-void compute(int l, int r, int optL, int optR, const vector<ll> &prev, vector<ll> &cur, Cost cost) {
+void compute(int l, int r, int optL, int optR, const vector<ll> &prev, vector<ll> &cur, Cost cost)
+{
   if (l > r)
     return;
   int mid = (l + r) / 2;

@@ -1,15 +1,19 @@
 #include <bits/stdc++.h>
 using namespace std;
-template <class T, class F> struct SparseTable {
+template <class T, class F>
+struct SparseTable
+{
   int n, K;
   F f;
   vector<vector<T>> st;
   vector<int> lg;
   SparseTable() {}
-  SparseTable(vector<T> a, F f) : f(f) {
+  SparseTable(vector<T> a, F f) : f(f)
+  {
     build(a);
   }
-  void build(vector<T> a) {
+  void build(vector<T> a)
+  {
     n = a.size();
     K = n ? __lg(n) + 1 : 1;
     st.assign(K, vector<T>(n));
@@ -22,7 +26,8 @@ template <class T, class F> struct SparseTable {
     for (int i = 2; i <= n; i++)
       lg[i] = lg[i / 2] + 1;
   }
-  T query(int l, int r) {
+  T query(int l, int r)
+  {
     int k = lg[r - l + 1];
     return f(st[k][l], st[k][r - (1 << k) + 1]);
   }

@@ -2,14 +2,18 @@
 using namespace std;
 using ll = long long;
 const ll LICH_INF = (1LL << 62);
-struct LiChao {
-  struct Line {
+struct LiChao
+{
+  struct Line
+  {
     ll m, b;
-    ll get(ll x) const {
+    ll get(ll x) const
+    {
       return m * x + b;
     }
   };
-  struct Node {
+  struct Node
+  {
     Line ln;
     Node *l = 0, *r = 0;
     Node(Line ln) : ln(ln) {}
@@ -17,11 +21,14 @@ struct LiChao {
   ll lo, hi;
   Node *root = 0;
   LiChao(ll l, ll r) : lo(l), hi(r) {}
-  void add(Line nw) {
+  void add(Line nw)
+  {
     add(root, lo, hi, nw);
   }
-  void add(Node *&t, ll l, ll r, Line nw) {
-    if (!t) {
+  void add(Node *&t, ll l, ll r, Line nw)
+  {
+    if (!t)
+    {
       t = new Node(nw);
       return;
     }
@@ -36,10 +43,12 @@ struct LiChao {
     else
       add(t->r, m + 1, r, nw);
   }
-  ll query(ll x) {
+  ll query(ll x)
+  {
     return query(root, lo, hi, x);
   }
-  ll query(Node *t, ll l, ll r, ll x) {
+  ll query(Node *t, ll l, ll r, ll x)
+  {
     if (!t)
       return LICH_INF;
     ll ans = t->ln.get(x);

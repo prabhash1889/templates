@@ -1,8 +1,10 @@
 #include <bits/stdc++.h>
 using namespace std;
 using ll = long long;
-ll exgcd(ll a, ll b, ll &x, ll &y) {
-  if (!b) {
+ll exgcd(ll a, ll b, ll &x, ll &y)
+{
+  if (!b)
+  {
     x = 1;
     y = 0;
     return a;
@@ -12,7 +14,8 @@ ll exgcd(ll a, ll b, ll &x, ll &y) {
   y = x1 - y1 * (a / b);
   return g;
 }
-optional<ll> inv_mod(ll a, ll m) {
+optional<ll> inv_mod(ll a, ll m)
+{
   ll x, y, g = exgcd(a, m, x, y);
   if (g != 1)
     return nullopt;
@@ -21,7 +24,8 @@ optional<ll> inv_mod(ll a, ll m) {
     x += m;
   return x;
 }
-optional<pair<ll, ll>> crt_pair(ll r1, ll m1, ll r2, ll m2) {
+optional<pair<ll, ll>> crt_pair(ll r1, ll m1, ll r2, ll m2)
+{
   ll x, y, g = exgcd(m1, m2, x, y);
   if ((r2 - r1) % g)
     return nullopt;

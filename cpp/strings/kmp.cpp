@@ -1,9 +1,11 @@
 #include <bits/stdc++.h>
 using namespace std;
-vector<int> prefix_function(const string &s) {
+vector<int> prefix_function(const string &s)
+{
   int n = s.size();
   vector<int> pi(n);
-  for (int i = 1; i < n; i++) {
+  for (int i = 1; i < n; i++)
+  {
     int j = pi[i - 1];
     while (j && s[i] != s[j])
       j = pi[j - 1];
@@ -13,7 +15,8 @@ vector<int> prefix_function(const string &s) {
   }
   return pi;
 }
-vector<int> kmp_find(const string &t, const string &p) {
+vector<int> kmp_find(const string &t, const string &p)
+{
   string s = p + '#' + t;
   auto pi = prefix_function(s);
   vector<int> ans;

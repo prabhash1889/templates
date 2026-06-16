@@ -1,6 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
-int main(int argc, char **argv) {
+int main(int argc, char **argv)
+{
   long long seed =
       argc > 1 ? atoll(argv[1]) : chrono::steady_clock::now().time_since_epoch().count();
   mt19937 rng(seed);

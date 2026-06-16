@@ -1,25 +1,32 @@
 #include <bits/stdc++.h>
 using namespace std;
 const long double EPSC = 1e-12L;
-struct P {
+struct P
+{
   long double x, y;
-  P operator+(P o) const {
+  P operator+(P o) const
+  {
     return {x + o.x, y + o.y};
   }
-  P operator-(P o) const {
+  P operator-(P o) const
+  {
     return {x - o.x, y - o.y};
   }
-  P operator*(long double k) const {
+  P operator*(long double k) const
+  {
     return {x * k, y * k};
   }
 };
-long double norm(P p) {
+long double norm(P p)
+{
   return hypotl(p.x, p.y);
 }
-P rot90(P p) {
+P rot90(P p)
+{
   return {-p.y, p.x};
 }
-vector<P> circle_circle(P a, long double r, P b, long double R) {
+vector<P> circle_circle(P a, long double r, P b, long double R)
+{
   P d = b - a;
   long double D = norm(d);
   if (D < EPSC || D > r + R + EPSC || D + min(r, R) + EPSC < max(r, R))
